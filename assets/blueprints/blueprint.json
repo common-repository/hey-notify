@@ -1,0 +1,45 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "landingPage": "/wp-admin/edit.php?post_type=hey_notify",
+    "preferredVersions": {
+        "php": "latest",
+        "wp": "latest"
+    },
+    "phpExtensionBundles": [
+        "kitchen-sink"
+    ],
+    "features": {
+        "networking": false
+    },
+    "steps": [
+        {
+            "step": "login",
+            "username": "admin",
+            "password": "password"
+        },
+        {
+            "step": "installPlugin",
+            "pluginZipFile": {
+                "resource": "wordpress.org/plugins",
+                "slug": "hey-notify"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "importWxr",
+            "file": {
+                "resource": "url",
+                "url": "https://raw.githubusercontent.com/firetreedesign/hey-notify/main/data/live-preview.xml"
+            }
+        },
+        {
+            "step": "setSiteOptions",
+            "options": {
+                "blogname": "Hey Notify Live Preview",
+                "hey_notify_live_preview": true
+            }
+        }
+    ]
+}
